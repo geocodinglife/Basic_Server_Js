@@ -1,4 +1,6 @@
 const { Router, request, response } = require('express');
+//Controllers
+const indexCtrl = require('../controllers/controllers');
 
 class IndexRoutes {
 
@@ -9,26 +11,12 @@ class IndexRoutes {
 
     config() {
         this.router.route('/')
-            .get((request, response) => {
-                response.json({ message: 'Get All Regiters' })
-            })
-            .post((request, response) => {
-                const newRegister = request.body;
-                response.json({ message: 'Add New Register', newRegister })
-            })
+            .get(indexCtrl.getAllRegisters)
+            .post(indexCtrl.addRegister)
         this.router.route('/:id')
-            .get((request, response) => {
-                const { id } = request.params;
-                response.json({ message: 'Get Register No. ' + id })
-            })
-            .delete((request, response) => {
-                const { id } = request.params;
-                response.json({ message: 'Delete Register No. ' + id })
-            })
-            .put((request, response) => {
-                const { id } = request.params;
-                response.json({ message: 'Update Register No. ' + id })
-            })
+            .get(indexCtrl.getOneRegister)
+            .delete(indexCtrl.deleteRegister)
+            .put(indexCtrl.updateRegister)
     }
 
 }
