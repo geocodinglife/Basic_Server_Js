@@ -1,7 +1,7 @@
 const server = require('./app');
 
-class Main{
-    constructor(){
+class Main {
+    constructor() {
         server;
     }
 }
